@@ -1,0 +1,30 @@
+# Rust
+/target
+**/*.rs.bk
+*.pdb
+
+# 生成された NFT
+/output
+
+# 環境変数
+.env
+.env.local
+
+# ログ・一時ファイル
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS 固有
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# エディタ / IDE
+.vscode/
+.idea/
+*.iml
+.fleet/
+.vim/

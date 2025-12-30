@@ -1,0 +1,90 @@
+# 生成枚数
+count: 100
+
+# 出力ディレクトリ
+output:
+  image_dir: "output/images"
+  metadata_dir: "output/metadata"
+  png_compression:
+    enabled: true
+    level: 4
+
+# メタデータ設定
+metadata:
+  name: "Your Collection"
+  description: "Remember to replace this description"
+  base_image_url: "https://example.com/images"
+
+# レイヤー構成
+layers:
+  - name: "Background"
+    directory: "layers/Background"
+    rarity:
+      "Black.png": 1
+
+  - name: "Eyeball"
+    directory: "layers/Eyeball"
+    rarity:
+      "Red.png": 50
+      "White.png": 50
+
+  - name: "Iris"
+    directory: "layers/Iris"
+    rarity:
+      "Large.png": 20
+      "Medium.png": 20
+      "Small.png": 60
+
+  - name: "Eye color"
+    directory: "layers/Eye color"
+    rarity:
+      "Cyan.png": 1
+      "Green.png": 1
+      "Pink.png": 1
+      "Purple.png": 1
+      "Red.png": 1
+      "Yellow.png": 10
+
+  - name: "Shine"
+    directory: "layers/Shine"
+    rarity:
+      "Shapes.png": 100
+
+  - name: "Bottom lid"
+    directory: "layers/Bottom lid"
+    rarity:
+      "High.png": 20
+      "Low.png": 40
+      "Middle.png": 40
+
+  - name: "Top lid"
+    directory: "layers/Top lid"
+    rarity:
+      "High.png": 30
+      "Low.png": 20
+      "Middle.png": 50
+
+  - name: "Goo"
+    directory: "layers/Goo"
+    rarity:
+      "Green.png": 1
+      "None.png": 99
+
+constraints:
+  forbidden_pairs:
+    # 赤い眼球と赤い目の色の組み合わせを禁止
+    - a: { trait_type: "Eyeball", value: "Red" }
+      b: { trait_type: "Eye color", value: "Red" }
+
+    # 両方のまぶたが高い（閉じている）組み合わせを禁止
+    - a: { trait_type: "Top lid", value: "High" }
+      b: { trait_type: "Bottom lid", value: "High" }
+
+    # 小さい虹彩とシアンの目の色の組み合わせを禁止（レアリティ調整）
+    - a: { trait_type: "Iris", value: "Small" }
+      b: { trait_type: "Eye color", value: "Cyan" }
+
+    # 大きい虹彩と低いトップまぶたの組み合わせを禁止
+    - a: { trait_type: "Iris", value: "Large" }
+      b: { trait_type: "Top lid", value: "Low" }
+
